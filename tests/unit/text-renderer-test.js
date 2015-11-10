@@ -27,8 +27,7 @@ test('renders an empty mobiledoc', (assert) => {
   };
   let rendered = renderer.render(mobiledoc);
 
-  assert.ok(rendered, 'renders output');
-  assert.equal(rendered, '<div></div>', 'output is empty');
+  assert.equal(rendered, '', 'output is empty');
 });
 
 test('renders a mobiledoc without markers', (assert) => {
@@ -45,7 +44,7 @@ test('renders a mobiledoc without markers', (assert) => {
   };
   let rendered = renderer.render(mobiledoc);
   assert.equal(rendered,
-               '<div><p>hello world</p></div>');
+               'hello world');
 });
 
 test('renders a mobiledoc with simple (no attributes) marker', (assert) => {
@@ -63,7 +62,7 @@ test('renders a mobiledoc with simple (no attributes) marker', (assert) => {
     ]
   };
   let rendered = renderer.render(mobiledoc);
-  assert.equal(rendered, '<div><p><b>hello world</b></p></div>');
+  assert.equal(rendered, 'hello world');
 });
 
 test('renders a mobiledoc with complex (has attributes) marker', (assert) => {
@@ -81,7 +80,7 @@ test('renders a mobiledoc with complex (has attributes) marker', (assert) => {
     ]
   };
   let rendered = renderer.render(mobiledoc);
-  assert.equal(rendered, '<div><p><a href="http://google.com">hello world</a></p></div>');
+  assert.equal(rendered, 'hello world');
 });
 
 test('renders a mobiledoc with multiple markups in a section', (assert) => {
@@ -103,9 +102,30 @@ test('renders a mobiledoc with multiple markups in a section', (assert) => {
     ]
   };
   let rendered = renderer.render(mobiledoc);
-  assert.equal(rendered, '<div><p><b>hello <i>brave new </i>world</b></p></div>');
+  assert.equal(rendered, 'hello brave new world');
 });
 
+test('renders a mobiledoc with multiple sections', (assert) => {
+  let mobiledoc = {
+    version: MOBILEDOC_VERSION,
+    sections: [
+      [],        // markers
+      [        // sections
+        [1, 'P', [
+          [[], 0, 'first section'],
+        ]],
+        [1, 'P', [
+          [[], 0, 'second section']
+        ]]
+      ]
+    ]
+  };
+
+  let rendered = renderer.render(mobiledoc);
+  assert.equal(rendered, ['first section', 'second section'].join('\n'));
+});
+
+// FIXME ??
 test('renders a mobiledoc with multiple markups in a section', (assert) => {
   let url = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
   let mobiledoc = {
@@ -118,7 +138,7 @@ test('renders a mobiledoc with multiple markups in a section', (assert) => {
     ]
   };
   let rendered = renderer.render(mobiledoc);
-  assert.equal(rendered, `<div><img src="${url}"></div>`);
+  assert.equal(rendered, '', 'card section is empty');
 });
 
 test('renders a mobiledoc with card section and src in payload to image', (assert) => {
@@ -137,7 +157,7 @@ test('renders a mobiledoc with card section and src in payload to image', (asser
     ]
   };
   let rendered = renderer.render(mobiledoc);
-  assert.equal(rendered, '<div><img src="bob.gif"></div>');
+  assert.equal(rendered, '', 'card section is empty');
 });
 
 test('renders a mobiledoc with card section and no src to nothing', (assert) => {
@@ -156,11 +176,10 @@ test('renders a mobiledoc with card section and no src to nothing', (assert) => 
     ]
   };
   let rendered = renderer.render(mobiledoc);
-  assert.equal(rendered, '<div><p></p></div>');
+  assert.equal(rendered, '', 'card section with no src is empty');
 });
 
 test('renders a mobiledoc with card section that has been provided', (assert) => {
-  assert.expect(3);
   let cardName = 'title-card';
   let payload = {
     name: 'bob'
@@ -168,11 +187,8 @@ test('renders a mobiledoc with card section that has been provided', (assert) =>
   let titleCard = {
     name: cardName,
     text: {
-      setup(buffer, options, env, setupPayload) {
-        assert.deepEqual(buffer, []);
-        assert.deepEqual(payload, setupPayload);
-        buffer.push('Howdy ');
-        buffer.push('friend');
+      setup(buffer, options, env, payload) {
+        return `Howdy ${payload.name}`;
       }
     }
   };
@@ -188,7 +204,7 @@ test('renders a mobiledoc with card section that has been provided', (assert) =>
   let rendered = renderer.render(mobiledoc, {
     'title-card': titleCard
   });
-  assert.equal(rendered, '<div><div>Howdy friend</div></div>');
+  assert.equal(rendered, 'Howdy bob');
 });
 
 test('renders a mobiledoc with default image section', (assert) => {
@@ -208,7 +224,7 @@ test('renders a mobiledoc with default image section', (assert) => {
   };
   let rendered = renderer.render(mobiledoc);
 
-  assert.equal(rendered, '<div><div><img src="example.org/foo.jpg"></div></div>');
+  assert.equal(rendered, '', 'empty for image sections');
 });
 
 test('render mobiledoc with list section and list items', (assert) => {
@@ -226,6 +242,5 @@ test('render mobiledoc with list section and list items', (assert) => {
   };
   const rendered = renderer.render(mobiledoc);
   
-  assert.equal(rendered,
-               '<div><ul><li>first item</li><li>second item</li></ul></div>');
+  assert.equal(rendered, ['first item','second item'].join('\n'));
 });

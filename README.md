@@ -1,7 +1,7 @@
 ## Mobiledoc Text Renderer [![Build Status](https://travis-ci.org/bustlelabs/mobiledoc-text-renderer.svg?branch=v0.1.0)](https://travis-ci.org/bustlelabs/mobiledoc-text-renderer)
 
-This is an Text renderer for the [Mobiledoc](https://github.com/bustlelabs/content-kit-editor/blob/master/MOBILEDOC.md) format used
-by the [Content-Kit Editor](https://github.com/bustlelabs/content-kit-editor).
+This is an Text renderer for the [Mobiledoc](https://github.com/bustlelabs/mobiledoc-kit/blob/master/MOBILEDOC.md) format used
+by the [Mobiledoc-kit](https://github.com/bustlelabs/mobiledoc-kit).
 
 The renderer is a small library intended for use in servers that are building
 Text documents. It may be of limited use inside browsers as well.
@@ -10,7 +10,7 @@ Text documents. It may be of limited use inside browsers as well.
 
 ```
 var mobiledoc = {
-  version: "0.1",
+  version: "0.2.0",
   sections: [
     [         // markers
       ['B']
@@ -30,9 +30,7 @@ var mobiledoc = {
 var renderer = new TextRenderer();
 var cards = {};
 var rendered = renderer.render(mobiledoc, cards);
-document.getElementById('output').appendChild(rendered);
-// renders <div><p><b>hello world</b></b></div>
-// into 'output' element
+// render == "hello world"
 ```
 
 ### Tests
