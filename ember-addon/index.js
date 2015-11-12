@@ -3,7 +3,7 @@ var Funnel = require('broccoli-funnel');
 module.exports = {
   name: 'mobiledoc-text-renderer',
   treeForVendor: function() {
-    var files = new Funnel(__dirname + '/dist/', {
+    var files = new Funnel(__dirname + '/../dist/', {
       files: [
         'global/mobiledoc-text-renderer.js'
       ],

@@ -4,7 +4,7 @@
   "description": "Renders mobiledoc input to text (string) output",
   "main": "dist/commonjs/mobiledoc-text-renderer/index.js",
   "ember-addon": {
-    "main": "index.js"
+    "main": "ember-addon/index.js"
   },
   "scripts": {
     "test": "testem ci",
