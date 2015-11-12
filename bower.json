@@ -1,0 +1,27 @@
+{
+  "name": "mobiledoc-text-renderer",
+  "description": "Renders mobiledoc input to text (string) output",
+  "main": "dist/global/mobiledoc-text-renderer/mobiledoc-text-renderer.js",
+  "authors": [
+    "Cory Forsyth",
+    "Matthew Beale"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "mobiledoc",
+    "render",
+    "content-kit",
+    "mobiledoc-renderer"
+  ],
+  "homepage": "https://github.com/bustlelabs/mobiledoc-text-renderer",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

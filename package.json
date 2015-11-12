@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "description": "Renders mobiledoc input to text (string) output",
   "main": "dist/commonjs/mobiledoc-text-renderer/index.js",
-  "ember-addon": {
-    "main": "ember-addon/index.js"
-  },
   "scripts": {
     "test": "testem ci",
     "build": "rm -rf dist/ && broccoli build dist"
@@ -18,8 +15,7 @@
     "mobiledoc",
     "render",
     "content-kit",
-    "text",
-    "ember-addon"
+    "mobiledoc-renderer"
   ],
   "author": "Cory Forsyth <cory.forsyth@gmail.com> (http://coryforsyth.com/)",
   "license": "MIT",
@@ -37,8 +33,5 @@
     "broccoli-multi-builder": "^0.2.6",
     "broccoli-test-builder": "^0.2.0",
     "testem": "^0.9.0-1"
-  },
-  "dependencies": {
-    "broccoli-funnel": "^1.0.0"
   }
 }
