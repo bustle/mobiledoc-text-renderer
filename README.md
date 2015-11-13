@@ -1,4 +1,4 @@
-## Mobiledoc Text Renderer [![Build Status](https://travis-ci.org/bustlelabs/mobiledoc-text-renderer.svg?branch=v0.1.0)](https://travis-ci.org/bustlelabs/mobiledoc-text-renderer)
+## Mobiledoc Text Renderer [![Build Status](https://travis-ci.org/bustlelabs/mobiledoc-text-renderer.svg?branch=master)](https://travis-ci.org/bustlelabs/mobiledoc-text-renderer)
 
 This is an Text renderer for the [Mobiledoc](https://github.com/bustlelabs/mobiledoc-kit/blob/master/MOBILEDOC.md) format used
 by the [Mobiledoc-kit](https://github.com/bustlelabs/mobiledoc-kit).
