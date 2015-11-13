@@ -30,7 +30,7 @@ var mobiledoc = {
 var renderer = new TextRenderer();
 var cards = {};
 var rendered = renderer.render(mobiledoc, cards);
-// render == "hello world"
+// rendered == "hello world"
 ```
 
 ### Tests
