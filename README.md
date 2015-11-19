@@ -27,10 +27,9 @@ var mobiledoc = {
     ]
   ]
 };
-var renderer = new TextRenderer();
-var cards = {};
-var rendered = renderer.render(mobiledoc, cards);
-// rendered == "hello world"
+var renderer = new TextRenderer({cards: []});
+var rendered = renderer.render(mobiledoc);
+console.log(rendered.result); // "hello world"
 ```
 
 ### Tests
