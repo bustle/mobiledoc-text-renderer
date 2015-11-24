@@ -34,6 +34,15 @@ var rendered = renderer.render(mobiledoc);
 console.log(rendered.result); // "hello world"
 ```
 
+The Renderer constructor accepts a single object with the following optional properties:
+  * `cards` [array] - The list of card objects that the renderer may encounter in the mobiledoc
+  * `cardOptions` [object] - Options to pass to cards when they are rendered
+  * `unknownCardHandler` [function] - Will be called when any unknown card is enountered
+
+The return value from `renderer.render(mobiledoc)` is an object with two properties:
+  * `result` [string] - The rendered result
+  * `teardown` [function] - When called, this function will tear down the rendered mobiledoc and call any teardown handlers that were registered by cards when they were rendered
+
 ### Tests
 
  * `npm test`
