@@ -12,7 +12,7 @@ const { test, module } = QUnit;
 const MOBILEDOC_VERSION = '0.2.0';
 
 let renderer;
-module('Unit: Mobiledoc Text Renderer', {
+module('Unit: Mobiledoc Text Renderer - 0.2', {
   beforeEach() {
     renderer = new Renderer();
   }
@@ -151,7 +151,7 @@ test('render mobiledoc with list section and list items', (assert) => {
     ]
   };
   let { result: rendered } = renderer.render(mobiledoc);
-  
+
   assert.equal(rendered, ['first item','second item'].join('\n'));
 });
 
