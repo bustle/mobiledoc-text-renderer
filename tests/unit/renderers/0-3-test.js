@@ -295,7 +295,7 @@ test('rendering nested mobiledocs in cards', (assert) => {
     ]
   };
 
-  let renderer = new Renderer({cards});
+  renderer = new Renderer({cards});
   let { result: rendered } = renderer.render(mobiledoc);
   assert.equal(rendered, 'hello world');
 });
