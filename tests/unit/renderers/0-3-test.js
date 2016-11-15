@@ -14,7 +14,8 @@ import {
 } from 'mobiledoc-text-renderer/utils/marker-types';
 
 const { test, module } = QUnit;
-const MOBILEDOC_VERSION = '0.3.0';
+const MOBILEDOC_VERSION_0_3= '0.3.0';
+const MOBILEDOC_VERSION_0_3_1 = '0.3.1';
 
 let renderer;
 module('Unit: Mobiledoc Text Renderer - 0.3', {
@@ -25,7 +26,7 @@ module('Unit: Mobiledoc Text Renderer - 0.3', {
 
 test('renders an empty mobiledoc', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [],
@@ -38,7 +39,7 @@ test('renders an empty mobiledoc', (assert) => {
 
 test('renders a mobiledoc without markers', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [],
@@ -53,9 +54,26 @@ test('renders a mobiledoc without markers', (assert) => {
                'hello world');
 });
 
+test('renders a mobiledoc 0.3.1 without markers with aside', (assert) => {
+  let mobiledoc = {
+    version: MOBILEDOC_VERSION_0_3_1,
+    atoms: [],
+    cards: [],
+    markups: [],
+    sections: [
+      [MARKUP_SECTION_TYPE, 'ASIDE', [
+        [MARKUP_MARKER_TYPE, [], 0, 'hello world']]
+      ]
+    ]
+  };
+  let {result: rendered} = renderer.render(mobiledoc);
+  assert.equal(rendered,
+               'hello world');
+});
+
 test('renders a mobiledoc with simple (no attributes) marker', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [
@@ -73,7 +91,7 @@ test('renders a mobiledoc with simple (no attributes) marker', (assert) => {
 
 test('renders a mobiledoc with complex (has attributes) marker', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [
@@ -91,7 +109,7 @@ test('renders a mobiledoc with complex (has attributes) marker', (assert) => {
 
 test('renders a mobiledoc with multiple markups in a section', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [
@@ -113,7 +131,7 @@ test('renders a mobiledoc with multiple markups in a section', (assert) => {
 
 test('renders a mobiledoc with image section', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [],
@@ -130,7 +148,7 @@ test('renders a mobiledoc with built-in image card (as empty string)', (assert) 
   let cardName = 'image-card';
   let payload = { src: 'bob.gif' };
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [
       [cardName, payload]
@@ -146,7 +164,7 @@ test('renders a mobiledoc with built-in image card (as empty string)', (assert) 
 
 test('render mobiledoc with list section and list items', (assert) => {
   const mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [],
@@ -172,7 +190,7 @@ test('renders a mobiledoc with card section', (assert) => {
     }
   };
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [
       [cardName]
@@ -220,7 +238,7 @@ test('throws if card render returns invalid result', (assert) => {
     }
   };
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [
       [card.name]
@@ -244,7 +262,7 @@ test('card may render nothing', (assert) => {
     render() {}
   };
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [
       [card.name]
@@ -272,7 +290,7 @@ test('rendering nested mobiledocs in cards', (assert) => {
   }];
 
   let innerMobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [],
@@ -284,7 +302,7 @@ test('rendering nested mobiledocs in cards', (assert) => {
   };
 
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [
       ['nested-card', {mobiledoc: innerMobiledoc}]
@@ -302,7 +320,7 @@ test('rendering nested mobiledocs in cards', (assert) => {
 
 test('rendering unknown card without unknownCardHandler does nothing', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [
       ['missing-card']
@@ -325,7 +343,7 @@ test('rendering unknown card uses unknownCardHandler', (assert) => {
   let expectedPayload = {};
   let cardOptions = {};
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [
       [cardName, expectedPayload]
@@ -365,7 +383,7 @@ test('teardown hook calls registered teardown methods', (assert) => {
     }
   };
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [
       [card.name]
@@ -405,7 +423,7 @@ test('throws when given an unexpected mobiledoc version', (assert) => {
 
 test('renders a mobiledoc with multiple sections', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [],
@@ -425,7 +443,7 @@ test('renders a mobiledoc with multiple sections', (assert) => {
 
 test('XSS: unexpected markup and list section tag names are not renderered', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [],
@@ -444,7 +462,7 @@ test('XSS: unexpected markup and list section tag names are not renderered', (as
 
 test('XSS: unexpected markup types are not rendered', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [],
     cards: [],
     markups: [
@@ -475,7 +493,7 @@ test('renders a mobiledoc with atom', (assert) => {
     }
   };
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [
       ['hello-atom', 'Bob', { id: 42 }],
     ],
@@ -525,7 +543,7 @@ test('throws if atom render returns invalid result', (assert) => {
     }
   };
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [
       ['bad', 'Bob', { id: 42 }],
     ],
@@ -551,7 +569,7 @@ test('atom may render nothing', (assert) => {
     render() {}
   };
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [
       ['ok', 'Bob', { id: 42 }],
     ],
@@ -572,7 +590,7 @@ test('atom may render nothing', (assert) => {
 
 test('rendering unknown atom without unknownAtomHandler renders value', (assert) => {
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [
       ['missing-atom', 'Bob', { id: 42 }],
     ],
@@ -597,7 +615,7 @@ test('rendering unknown atom uses unknownAtomHandler', (assert) => {
   let expectedPayload = { id: 42 };
   let cardOptions = {};
   let mobiledoc = {
-    version: MOBILEDOC_VERSION,
+    version: MOBILEDOC_VERSION_0_3,
     atoms: [
       ['missing-atom', 'Bob', { id: 42 }],
     ],

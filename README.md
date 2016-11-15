@@ -45,6 +45,7 @@ The return value from `renderer.render(mobiledoc)` is an object with two propert
 
 ### Tests
 
+ * `npm install -g broccoli-cli testem`
  * `npm test`
 
 ### Releasing
