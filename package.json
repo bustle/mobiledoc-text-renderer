@@ -28,7 +28,7 @@
   ],
   "homepage": "https://github.com/bustlelabs/mobiledoc-text-renderer",
   "devDependencies": {
-    "broccoli": "^0.16.3",
+    "broccoli": "^1.0.0",
     "broccoli-merge-trees": "^1.0.0",
     "broccoli-multi-builder": "^0.2.8",
     "broccoli-test-builder": "^0.2.0",
