@@ -29,7 +29,7 @@ var mobiledoc = {
     ]
   ]
 };
-var renderer = new TextRenderer({cards: []});
+var renderer = new TextRenderer.default({cards: []});
 var rendered = renderer.render(mobiledoc);
 console.log(rendered.result); // "hello world"
 ```
