@@ -4,6 +4,7 @@
   "description": "Renders mobiledoc input to text (string) output",
   "main": "dist/commonjs/mobiledoc-text-renderer/index.js",
   "scripts": {
+    "start": "broccoli serve",
     "test": "testem ci",
     "build": "rm -rf dist/ && broccoli build dist"
   },
