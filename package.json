@@ -1,6 +1,6 @@
 {
   "name": "mobiledoc-text-renderer",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Renders mobiledoc input to text (string) output",
   "main": "dist/commonjs/mobiledoc-text-renderer/index.js",
   "scripts": {
