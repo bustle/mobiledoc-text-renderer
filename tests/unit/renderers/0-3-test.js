@@ -16,6 +16,7 @@ import {
 const { test, module } = QUnit;
 const MOBILEDOC_VERSION_0_3= '0.3.0';
 const MOBILEDOC_VERSION_0_3_1 = '0.3.1';
+const MOBILEDOC_VERSION_0_3_2 = '0.3.2';
 
 let renderer;
 module('Unit: Mobiledoc Text Renderer - 0.3', {
@@ -69,6 +70,20 @@ test('renders a mobiledoc 0.3.1 without markers with aside', (assert) => {
   let {result: rendered} = renderer.render(mobiledoc);
   assert.equal(rendered,
                'hello world');
+});
+
+test('renders a mobiledoc 0.3.2', (assert) => {
+  let mobiledoc = {
+    version: MOBILEDOC_VERSION_0_3_2,
+    atoms: [],
+    cards: [],
+    markups: [],
+    sections: []
+  };
+  let {result: rendered} = renderer.render(mobiledoc);
+
+  assert.equal(rendered,
+               '');
 });
 
 test('renders a mobiledoc with simple (no attributes) marker', (assert) => {
@@ -637,4 +652,27 @@ test('rendering unknown atom uses unknownAtomHandler', (assert) => {
   };
   renderer = new Renderer({atoms: [], unknownAtomHandler, cardOptions});
   renderer.render(mobiledoc);
+});
+
+test('renders a mobiledoc 0.3.2 with attributes', (assert) => {
+  let mobiledoc = {
+    version: MOBILEDOC_VERSION_0_3_2,
+    atoms: [],
+    cards: [],
+    markups: [],
+    sections: [
+      [
+        MARKUP_SECTION_TYPE,
+        'P',
+        [
+          [0, [], 0, "Simple aligned example"]
+        ],
+        ['data-md-text-align', 'center']
+      ]
+    ]
+  };
+  let {result: rendered} = renderer.render(mobiledoc);
+
+  assert.equal(rendered,
+               'Simple aligned example');
 });
